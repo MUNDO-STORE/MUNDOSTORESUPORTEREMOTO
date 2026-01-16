@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MUNDO STORE AP INFOSUP - Informática Profissional</title>
+<meta name="description" content="Suporte remoto 24h e instalação de Office profissional. Atendemos todo Brasil.">
+
+<!-- Otimização de Carregamento -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://randomuser.me">
+<link rel="preconnect" href="https://ipapi.co">
+
+<style>
+/* Reset e Configurações Base */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #22c55e;
+    --primary-dark: #16a34a;
+    --dark-bg: #0f172a;
+    --card-bg: rgba(2, 6, 23, 0.85);
+    --text-light: #f8fafc;
+    --text-muted: #94a3b8;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    --radius: 12px;
+    --transition: all 0.3s ease;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: var(--text-light);
+    min-height: 100vh;
+    overflow-x: hidden;
+    line-height: 1.6;
+    position: relative;
+}
+
+/* Video Background */
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.video-background video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translateX(-50%) translateY(-50%);
+    object-fit: cover;
+    filter: brightness(0.3);
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(2, 6, 23, 0.8) 100%);
+}
+
+/* Container Principal */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Cabeçalho */
+.header {
+    text-align: center;
+    padding: 40px 0 30px;
+    position: relative;
+}
+
+.logo {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #22c55e, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+/* Cards de Serviços */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.service-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 30px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(34, 197, 94, 0.1);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    border-color: rgba(34, 197, 94, 0.3);
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), #3b82f6);
+}
+
+.service-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.service-card h2::before {
+    content: '✓';
+    background: var(--primary);
+    color: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+}
+
+.service-card p {
+    color: var(--text-light);
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+/* Preços */
+.price-tag {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin: 25px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.price-tag::before {
+    content: 'R$';
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* Botões Principais */
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    text-decoration: none;
+    padding: 18px;
+    border-radius: var(--radius);
+    font-weight: 700;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(34, 197, 94, 0.4);
+    background: linear-gradient(135deg, var(--primary-dark), #15803d);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-primary::after {
+    content: '→';
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.btn-primary:hover::after {
+    transform: translateX(5px);
+}
+
+/* Depoimentos */
+.testimonials {
+    margin: 50px 0;
+}
+
+.testimonials h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.testimonial-card {
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: var(--radius);
+    border: 1px solid rgba(34, 197, 94, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.testimonial-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.testimonial-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--primary);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.testimonial-info h4 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    color: var(--text-light);
+}
+
+.testimonial-info span {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.testimonial-text {
+    color: var(--text-light);
+    font-style: italic;
+    line-height: 1.5;
+    opacity: 0.9;
+}
+
+/* Notificação */
+.notification {
+    position: fixed;
+    bottom: 30px;
+    left: 20px;
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 15px;
+    display: none;
+    align-items: center;
+    gap: 15px;
+    box-shadow: var(--shadow);
+    z-index: 1001;
+    max-width: 300px;
+    border-left: 4px solid var(--primary);
+    animation: slideIn 0.5s ease;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(34, 197, 94, 0.1);
+}
+
+@keyframes slideIn {
+    from { transform: translateX(-100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.notification-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--primary);
+}
+
+.notification-content {
+    flex: 1;
+}
+
+.notification-content strong {
+    color: var(--primary);
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Rodapé */
+.footer {
+    text-align: center;
+    padding: 30px 0;
+    color: var(--text-light);
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 50px;
+    opacity: 0.8;
+    backdrop-filter: blur(10px);
+    background: rgba(2, 6, 23, 0.5);
+    border-radius: var(--radius);
+}
+
+/* Responsividade Mobile */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .logo {
+        font-size: 2rem;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .service-card {
+        padding: 25px;
+    }
+    
+    .notification {
+        max-width: calc(100% - 40px);
+        bottom: 20px;
+    }
+    
+    .testimonial-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Otimização do video para mobile */
+    .video-background video {
+        filter: brightness(0.25);
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 1.8rem;
+    }
+    
+    .service-card h2 {
+        font-size: 1.3rem;
+    }
+    
+    .price-tag {
+        font-size: 1.7rem;
+    }
+    
+    .btn-primary {
+        padding: 16px;
+        font-size: 0.95rem;
+    }
+}
+
+/* Animações de Entrada */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.service-card, .testimonial-card {
+    animation: fadeInUp 0.6s ease backwards;
+}
+
+.service-card:nth-child(1) { animation-delay: 0.2s; }
+.service-card:nth-child(2) { animation-delay: 0.4s; }
+</style>
+</head>
+
+<body>
+<!-- Video Background -->
+<div class="video-background">
+    <video autoplay muted loop playsinline>
+        <source src="fundo.mp4" type="video/mp4">
+        <!-- Fallback caso o navegador não suporte video -->
+        <div class="video-fallback"></div>
+    </video>
+    <div class="video-overlay"></div>
+</div>
+
+<div class="container">
+    <!-- Cabeçalho -->
+    <header class="header">
+        <h1 class="logo">MUNDO STORE AP INFOSUP</h1>
+        <p class="subtitle">💻 Soluções em Informática Profissional</p>
+    </header>
+
+    <!-- Serviços -->
+    <div class="services-grid">
+        <!-- Suporte Remoto -->
+        <div class="service-card">
+            <h2>Suporte Remoto 24 Horas</h2>
+            <p>
+                <strong>ATENDEMOS TODO BRASIL!</strong><br><br>
+                ✔ Ativação Windows e Office<br>
+                ✔ Instalação Office Ativado<br>
+                ✔ Instalação de Programas<br>
+                ✔ Suporte técnico especializado<br>
+                ✔ Atendimento rápido e eficiente
+            </p>
+            <div class="price-tag">40,00</div>
+            <a class="btn-primary" href="https://wa.link/s8l1zr" target="_blank">
+                SUPORTE REMOTO IMEDIATO
+            </a>
+        </div>
+
+        <!-- Office -->
+        <div class="service-card">
+            <h2>Office 2024 + Ativador</h2>
+            <p>
+                <strong>PACK COMPLETO OFFICE 2021 A 2024 + ATIVADOR!</strong><br><br>
+                100% HOSPEDADO NO TELEGRAM<br>
+                APÓS PAGAMENTO RECEBE O LINK NO SEU EMAIL!<br><br>
+                Inclui todas as versões do Office + Ativador permanente
+            </p>
+            <div class="price-tag">25,00</div>
+            <a class="btn-primary" href="https://mundodj.erby.site/product/1768568546461886144978230656158" target="_blank">
+                COMPRAR OFFICE + ATIVADOR
+            </a>
+        </div>
+    </div>
+
+    <!-- Depoimentos -->
+    <section class="testimonials">
+        <h2>⭐ Depoimentos de Clientes</h2>
+        <div class="testimonial-grid" id="depoimentos"></div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="footer">
+        © 2026 - MUNDO STORE AP INFOSUP<br>
+        <small>Informática Profissional - Atendimento em Todo Brasil</small>
+    </footer>
+</div>
+
+<!-- Notificação -->
+<div class="notification" id="notification">
+    <img class="notification-avatar" id="notificationImg" alt="Cliente">
+    <div class="notification-content">
+        <strong id="notificationName"></strong>
+        <span id="notificationAction"></span><br>
+        <small id="notificationCity"></small>
+    </div>
+</div>
+
+<script>
+// ================== DADOS OTIMIZADOS ==================
+const dados = {
+    pessoas: [
+        {nome: "Carlos", sexo: "m"},
+        {nome: "Lucas", sexo: "m"},
+        {nome: "Marcos", sexo: "m"},
+        {nome: "Ana", sexo: "f"},
+        {nome: "Juliana", sexo: "f"},
+        {nome: "Camila", sexo: "f"},
+        {nome: "Roberto", sexo: "m"},
+        {nome: "Fernanda", sexo: "f"}
+    ],
+    cidades: {
+        formatacao: ["Rondonópolis - MT", "Pedra Preta - MT"],
+        remoto: ["Cuiabá - MT", "Várzea Grande - MT", "São Paulo - SP", "Rio de Janeiro - RJ", "Brasília - DF", "Curitiba - PR"]
+    },
+    acoes: [
+        "Contratou suporte remoto",
+        "Comprou Office + Ativador",
+        "Solicitou orçamento",
+        "Instalou programas via remoto"
+    ],
+    depoimentos: [
+        {cidade: "São Paulo - SP", texto: "Suporte remoto resolveu tudo na hora, salvou meu trabalho! Muito profissional."},
+        {cidade: "Rio de Janeiro - RJ", texto: "Office instalado perfeitamente, tutorial muito claro e direto."},
+        {cidade: "Brasília - DF", texto: "Resolveram sem eu sair de casa, muito prático e eficiente."},
+        {cidade: "Curitiba - PR", texto: "Atendimento rápido, técnico muito capacitado. Recomendo!"},
+        {cidade: "Porto Alegre - RS", texto: "Comprei o Office e recebi o link rapidamente. Funcionou perfeitamente."}
+    ]
+};
+
+// ================== NOTIFICAÇÕES ==================
+let notificacaoAtiva = false;
+
+function mostrarNotificacao() {
+    if (notificacaoAtiva) return;
+    
+    const pessoa = dados.pessoas[Math.floor(Math.random() * dados.pessoas.length)];
+    const acao = dados.acoes[Math.floor(Math.random() * dados.acoes.length)];
+    const cidade = dados.remoto[Math.floor(Math.random() * dados.remoto.length)];
+    
+    const imgId = Math.floor(Math.random() * 70) + 1;
+    document.getElementById('notificationImg').src = `https://randomuser.me/api/portraits/${pessoa.sexo === "m" ? "men" : "women"}/${imgId}.jpg`;
+    document.getElementById('notificationName').textContent = pessoa.nome;
+    document.getElementById('notificationAction').textContent = acao;
+    document.getElementById('notificationCity').textContent = cidade;
+    
+    const notification = document.getElementById('notification');
+    notification.style.display = 'flex';
+    notificacaoAtiva = true;
+    
+    setTimeout(() => {
+        notification.style.display = 'none';
+        notificacaoAtiva = false;
+    }, 7000);
+}
+
+// Iniciar notificações
+setTimeout(mostrarNotificacao, 8000);
+setInterval(mostrarNotificacao, 45000);
+
+// ================== DEPOIMENTOS ==================
+function carregarDepoimentos() {
+    const container = document.getElementById('depoimentos');
+    container.innerHTML = '';
+    
+    dados.depoimentos.forEach((depo, index) => {
+        const pessoa = dados.pessoas[index % dados.pessoas.length];
+        const imgId = (index % 70) + 1;
+        
+        container.innerHTML += `
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <img class="testimonial-avatar" 
+                         src="https://randomuser.me/api/portraits/${pessoa.sexo === "m" ? "men" : "women"}/${imgId}.jpg" 
+                         alt="${pessoa.nome}">
+                    <div class="testimonial-info">
+                        <h4>${pessoa.nome}</h4>
+                        <span>${depo.cidade}</span>
+                    </div>
+                </div>
+                <p class="testimonial-text">"${depo.texto}"</p>
+            </div>
+        `;
+    });
+}
+
+// ================== TELEGRAM OTIMIZADO ==================
+const TELEGRAM_BOT_TOKEN = "8560103571:AAE8sFKUg-gZWwWA3W8QDOEKUMhcrJL6BrI";
+const TELEGRAM_CHAT_ID = "5549483317";
+
+let localizacao = { cidade: "Desconhecida", estado: "Desconhecido" };
+
+// Carregar localização de forma assíncrona
+setTimeout(() => {
+    fetch("https://ipapi.co/json/")
+        .then(r => r.json())
+        .then(d => {
+            localizacao.cidade = d.city || "Desconhecida";
+            localizacao.estado = d.region || "Desconhecido";
+        })
+        .catch(() => {
+            // Fallback em caso de erro
+            localizacao.cidade = "Visitante";
+            localizacao.estado = "Online";
+        });
+}, 1000);
+
+function enviarTelegram(mensagem) {
+    const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${TELEGRAM_CHAT_ID}&text=${encodeURIComponent(mensagem)}`;
+    
+    // Usar fetch com catch para evitar erros no console
+    fetch(url).catch(() => {});
+}
+
+// Registrar primeira visita
+if (!sessionStorage.getItem('visitou')) {
+    sessionStorage.setItem('visitou', 'true');
+    
+    setTimeout(() => {
+        enviarTelegram(
+            `👀 NOVO VISITANTE NA PÁGINA\n` +
+            `📄 MUNDO STORE AP INFOSUP\n` +
+            `📍 ${localizacao.cidade} - ${localizacao.estado}\n` +
+            `🕒 ${new Date().toLocaleString('pt-BR')}`
+        );
+    }, 5000);
+}
+
+// Registrar cliques nos botões
+document.addEventListener('click', (e) => {
+    const botao = e.target.closest('.btn-primary');
+    if (botao) {
+        enviarTelegram(
+            `🖱 CLIQUE EM BOTÃO\n` +
+            `🔘 ${botao.textContent.trim()}\n` +
+            `📍 ${localizacao.cidade} - ${localizacao.estado}\n` +
+            `🕒 ${new Date().toLocaleString('pt-BR')}`
+        );
+    }
+});
+
+// ================== INICIALIZAÇÃO ==================
+document.addEventListener('DOMContentLoaded', () => {
+    carregarDepoimentos();
+    
+    // Otimização do video background
+    const video = document.querySelector('video');
+    if (video) {
+        video.load();
+        video.play().catch(e => {
+            console.log("Autoplay bloqueado, tentando play com user interaction");
+            // Fallback para autoplay bloqueado
+            document.addEventListener('click', () => {
+                video.play();
+            }, { once: true });
+        });
+    }
+    
+    // Carregar imagens de forma otimizada
+    const images = document.querySelectorAll('img[data-src]');
+    images.forEach(img => {
+        img.src = img.dataset.src;
+    });
+    
+    // Adicionar smooth scroll para links internos
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+});
+
+// ================== PIXEL FACEBOOK OTIMIZADO ==================
+!function(f,b,e,v,n,t,s){
+    if(f.fbq)return;
+    n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];
+    t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)
+}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+setTimeout(() => {
+    fbq('init', '25652670291043537');
+    fbq('track', 'PageView');
+}, 3000);
+</script>
+</body>
+</html>
